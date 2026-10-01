@@ -3,6 +3,18 @@ import { ArrowRight, CheckCircle, Mail } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
+const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'] as const;
+
+function getUtmParams(): Record<string, string> {
+  const params = new URLSearchParams(window.location.search);
+  const out: Record<string, string> = {};
+  UTM_KEYS.forEach((key) => {
+    const value = params.get(key);
+    if (value) out[key] = value;
+  });
+  return out;
+}
+
 export function ContactSection() {
   const [formData, setFormData] = useState({ email: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
@@ -11,11 +23,29 @@ export function ContactSection() {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setStatus('sending');
-    const { error } = await supabase.from('contact_requests').insert(formData);
-    if (error) {
-      setStatus('error');
-      return;
+
+    const payload = {
+      ...formData,
+      ...getUtmParams(),
+      page: window.location.href,
+      ts: new Date().toLocaleString('ru-RU'),
+    };
+
+    try {
+      const res = await fetch('/api/telegram', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    } catch {
+      const { error } = await supabase.from('contact_requests').insert(formData);
+      if (error) {
+        setStatus('error');
+        return;
+      }
     }
+
     setFormData({ email: '', message: '' });
     setStatus('success');
   };
