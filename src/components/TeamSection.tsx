@@ -2,7 +2,7 @@ import { useScrollReveal } from '../hooks/useScrollReveal';
 
 const team = [
   {
-    name: 'Yuri Avsyanik',
+    name: 'Yury Ausianik',
     role: 'Co-founder & CEO',
     credentials: 'Serial entrepreneur, 2 → exit in med-tech',
     image: '/ausianik.png',
@@ -26,6 +26,12 @@ const team = [
     image: '/photo_2025-08-06_19-05-23.jpg',
   },
 ];
+
+const medicalTeam = Array.from({ length: 16 }, (_, i) => ({
+  image: `/team/doctor-${i + 1}.jpg`,
+  name: 'Physician',
+  role: 'Medical advisor',
+}));
 
 export function TeamSection() {
   const { ref, isVisible } = useScrollReveal<HTMLDivElement>();
@@ -76,6 +82,43 @@ export function TeamSection() {
               <p className="text-slate-500 text-sm leading-relaxed">{member.credentials}</p>
             </div>
           ))}
+        </div>
+
+        <div className="mt-20">
+          <div className="text-center mb-10">
+            <h3 className="text-2xl md:text-3xl font-bold text-[#0E1F3A] mb-3 tracking-tight">
+              Medical Advisory Board
+            </h3>
+            <p className="text-slate-500 max-w-2xl mx-auto">
+              Physicians and reproductive medicine specialists supporting clinical validation
+              across partner clinics.
+            </p>
+          </div>
+
+          <div
+            className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4"
+            style={{ opacity: isVisible ? 1 : 0, transition: 'opacity 0.8s ease 0.3s' }}
+          >
+            {medicalTeam.map((doc, index) => (
+              <div
+                key={index}
+                className="bg-white p-3 rounded-xl border border-slate-100 hover:border-[#00D1FF]/30 transition-all duration-300 hover:shadow-lg hover:shadow-slate-200/50 hover:-translate-y-1 text-center"
+              >
+                <div className="relative aspect-square rounded-lg mx-auto mb-3 overflow-hidden ring-2 ring-slate-50 group-hover:ring-[#00D1FF]/10">
+                  <img
+                    src={doc.image}
+                    alt={doc.name}
+                    loading="lazy"
+                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+                <h4 className="text-sm font-bold text-[#0E1F3A] mb-0.5 tracking-tight">
+                  {doc.name}
+                </h4>
+                <p className="text-[#00D1FF] text-xs font-medium">{doc.role}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -5,6 +5,8 @@ import { SolutionSection } from './components/SolutionSection';
 import { BenefitsSection } from './components/BenefitsSection';
 import { HowItWorksSection } from './components/HowItWorksSection';
 import { TractionSection } from './components/TractionSection';
+import { ClinicalTrialSection } from './components/ClinicalTrialSection';
+import { InvestmentSection } from './components/InvestmentSection';
 import { TeamSection } from './components/TeamSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
@@ -20,6 +22,8 @@ function App() {
         <BenefitsSection />
         <HowItWorksSection />
         <TractionSection />
+        <ClinicalTrialSection />
+        <InvestmentSection />
         <TeamSection />
         <ContactSection />
       </main>

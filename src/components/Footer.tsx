@@ -1,4 +1,5 @@
 import { ArrowUpRight } from 'lucide-react';
+import { companyDetails, registeredAddressLine } from '../lib/company';
 
 export function Footer() {
   return (
@@ -13,6 +14,18 @@ export function Footer() {
           <a href="#home" className="group flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">
             Back to top <ArrowUpRight size={16} className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
           </a>
+        </div>
+
+        <div className="mt-8 pt-6 border-t border-white/10 text-xs text-white/35 leading-relaxed">
+          <p className="text-white/55 font-semibold">{companyDetails.legalName}</p>
+          <p>{companyDetails.legalForm}</p>
+          <p className="mt-1">Registered office: {registeredAddressLine}</p>
+          <p className="mt-1">
+            KRS {companyDetails.krs} · REGON {companyDetails.regon} · NIP {companyDetails.nip} ·{' '}
+            <a href={`mailto:${companyDetails.email}`} className="hover:text-white/60 transition-colors">
+              {companyDetails.email}
+            </a>
+          </p>
         </div>
       </div>
     </footer>
