@@ -8,7 +8,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2.5 font-bold text-lg tracking-tight">
             <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#00D1FF]"><span className="h-3.5 w-3.5 rounded bg-white" /></span>
-            Deus<span className="text-[#00D1FF]">.</span>
+            Deus<span className="text-[#00D1FF]">Tech</span>
           </div>
           <p className="text-sm text-white/40">© 2025 Deus Technologies 2.0 — Building better outcomes for families.</p>
           <a href="#home" className="group flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">

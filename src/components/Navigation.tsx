@@ -71,7 +71,7 @@ export function Navigation() {
               <span className="absolute inset-0 rounded-xl bg-[#00D1FF] opacity-40 blur-md" />
               <span className="relative h-4 w-4 rounded-md bg-white" />
             </span>
-            <span>Deus<span className="text-[#00D1FF]">.</span></span>
+            <span>Deus<span className="text-[#00D1FF]">Tech</span></span>
           </button>
 
           <div className="hidden md:flex items-center gap-1">
